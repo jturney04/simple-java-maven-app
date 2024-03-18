@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package -Dhttps.proxyHost=10.0.0.22 -Dhttps.proxyPort=8118'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dhttps.proxyHost=10.0.0.22 -Dhttps.proxyPort=8118'
             }
             post {
                 always {
